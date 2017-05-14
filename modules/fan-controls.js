@@ -43,7 +43,7 @@ let pressButton = function(name) {
 			console.log('turned pin ' + buttons[name].pin + ' on');
 			
 			setTimeout(function () {
-				gpio.write(pin, false, (err) => {
+				gpio.write(buttons[name].pin, false, (err) => {
 					if (err) {
 						console.error('error turning off pin: ' + buttons[name].pin);
 						console.error(err);
@@ -56,12 +56,12 @@ let pressButton = function(name) {
 			}, 250);
 		});
 	});
-}
+};
 
 module.exports = {
 	
 	initPins : function() {
-		for (var prop in buttons) {
+		for (let prop in buttons) {
 			if (buttons.hasOwnProperty(prop)) {
 				console.log('Attempting to set up pin: ', buttons[prop].pin);
 				gpio.setup(buttons[prop].pin, gpio.DIR_OUT, (err) => {
@@ -78,7 +78,7 @@ module.exports = {
 	},
 	
 	setFanSpeed : function(speed) {
-		var result = new Result();
+		let result = new Result();
 		
 		pressButton(speed.toLowerCase())
 			.then(() => {
