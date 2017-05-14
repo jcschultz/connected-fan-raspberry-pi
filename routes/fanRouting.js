@@ -1,15 +1,19 @@
-var express = require('express');
-var router = express.Router();
-var controls = require('./../modules/fan-controls');
+let express = require('express');
+let router = express.Router();
+let controls = require('./../modules/fan-controls');
 
 // fan controls
 router.get('/fan/:action', function (req, res, next) {
-	res.json( controls.setFanSpeed(req.params.action) );
+	let result = controls.setFanSpeed(req.params.action);
+	console.log('result', result);
+	res.json( result );
 });
 
 // light toggle
 router.get('/light', function (req, res, next) {
-	res.json( controls.toggleLight() );
+	let result = controls.toggleLight();
+	console.log('result', result);
+	res.json( result );
 });
 
 module.exports = router;
