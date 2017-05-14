@@ -40,7 +40,7 @@ let pressButton = function(name) {
 				console.error(err);
 				reject(err);
 			}
-			console.log('turned pin ' + pin + ' on');
+			console.log('turned pin ' + buttons[name].pin + ' on');
 			
 			setTimeout(function () {
 				gpio.write(pin, false, (err) => {
@@ -49,7 +49,7 @@ let pressButton = function(name) {
 						console.error(err);
 						reject(err);
 					}
-					console.log('turned ' + pin + ' off');
+					console.log('turned ' + buttons[name].pin + ' off');
 					
 					resolve(true);
 				});
