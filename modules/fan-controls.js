@@ -63,8 +63,15 @@ module.exports = {
 	initPins : function() {
 		for (var prop in buttons) {
 			if (buttons.hasOwnProperty(prop)) {
-				gpio.setup(prop.pin, gpio.DIR_OUT, function(){
-					console.log('Successfully set up pin: ', prop.pin);
+				console.log('Attempting to set up pin: ', prop.pin);
+				gpio.setup(prop.pin, gpio.DIR_OUT, (err) => {
+					if (err) {
+						console.error('Failed to set up pin.');
+						console.error(err);
+					}
+					else {
+						console.log('Successfully set up');
+					}
 				});
 			}
 		}
