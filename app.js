@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var jwt = require('express-jwt');
 var rsaValidation = require('auth0-api-jwt-rsa-validation');
 var creds = require('./creds/creds');
-
+var fanControls = require('./modules/fan-controls');
 var fanRouting = require('./routes/fanRouting');
 
 var app = express();
@@ -33,6 +33,10 @@ var jwtCheck = jwt({
 	algorithms: ['RS256']
 });
 //app.use(jwtCheck);
+
+
+// set up gpio pins
+fanControls.initPins();
 
 
 app.use('/', fanRouting);
