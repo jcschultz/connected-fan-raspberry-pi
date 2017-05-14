@@ -78,20 +78,20 @@ module.exports = {
 	},
 	
 	setFanSpeed : function(speed) {
-		let result = new Result();
-		
-		pressButton(speed.toLowerCase())
-			.then(() => {
-				result.success = true;
-			})
-			.catch((err) => {
-				result.success = false;
-				result.error = err;
-			})
-			.then(() => {
-				return result;
-			});
-		
+		return new Promise((resolve, reject) => {
+			let result = new Result();
+			
+			pressButton(speed.toLowerCase())
+				.then(() => {
+					result.success = true;
+					resolve(result);
+				})
+				.catch((err) => {
+					result.success = false;
+					result.error = err;
+					reject(result);
+				});
+		});
 	},
 	
 	toggleLight : function() {
