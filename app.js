@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jwt = require('express-jwt');
 var rsaValidation = require('auth0-api-jwt-rsa-validation');
-var creds = require('./creds/creds');
 var fanControls = require('./modules/fan-controls');
 var fanRouting = require('./routes/fanRouting');
 
@@ -28,8 +27,8 @@ app.disable('x-powered-by');
 // validating token against auth0 service
 var jwtCheck = jwt({
 	secret: rsaValidation(),
-	audience: creds.auth0.audience,
-	issuer: creds.auth0.issuer,
+	audience: process.env.AUTH0_AUDIENCE || null,
+	issuer: process.env.AUTH0_ISSUER || null,
 	algorithms: ['RS256']
 });
 //app.use(jwtCheck);
