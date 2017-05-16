@@ -24,7 +24,7 @@ function pingHeroku() {
 	
 	setTimeout(function(){
 		pingHeroku();
-	}, 120000);
+	}, 300000); // 5 minutes
 }
 
 
