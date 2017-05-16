@@ -6,10 +6,10 @@ var args = {
 	headers: { 'Content-Type': 'application/json'  }
 };
 
-var url = process.env.HEROKU_URL;
+var url = process.env.HEROKU_URL + process.env.HEROKU_ADDRESS_PATH + '/' + process.env.IP_SECRET;
 
 function doPatch() {
-	client.patch(url + process.env.IP_SECRET, args, function(data, response){
+	client.patch(url, args, function(data, response){
 		if (data !== true) {
 			console.log('error response', response);
 		}
@@ -31,8 +31,6 @@ function pingHeroku() {
 
 var ipUpdater = {
 	start: function() {
-		console.log('starting ipTracker');
-		console.log('process.env.IP_SECRET', process.env.IP_SECRET);
 		pingHeroku();
 	},
 };
