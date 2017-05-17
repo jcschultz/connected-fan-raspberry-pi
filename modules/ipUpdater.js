@@ -3,10 +3,11 @@ var Client = require('node-rest-client').Client;
 var client = new Client();
 
 var args = {
-	headers: { 'Content-Type': 'application/json'  }
+	data : { 'secret' : process.env.IP_SECRET },
+	headers: { 'Content-Type': 'application/json' }
 };
 
-var url = process.env.HEROKU_URL + process.env.HEROKU_ADDRESS_PATH + '/' + process.env.IP_SECRET;
+var url = process.env.HEROKU_IP_TRACKER_URL;
 
 function doPatch() {
 	client.patch(url, args, function(data, response){
