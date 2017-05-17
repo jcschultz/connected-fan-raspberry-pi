@@ -9,8 +9,8 @@ var args = {
 
 var url = process.env.HEROKU_IP_TRACKER_URL + '/' + process.env.MACHINE_NAME;
 
-function doPatch() {
-	client.patch(url, args, function(data, response){
+function doApiCall() {
+	client.put(url, args, function(data, response){
 		if (data !== true) {
 			console.log('error response', response);
 		}
@@ -21,7 +21,7 @@ function doPatch() {
 }
 
 function pingHeroku() {
-	doPatch();
+	doApiCall();
 	
 	setTimeout(function(){
 		pingHeroku();
