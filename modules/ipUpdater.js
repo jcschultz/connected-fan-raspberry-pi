@@ -7,7 +7,7 @@ var args = {
 	headers: { 'Content-Type': 'application/json' }
 };
 
-var url = process.env.HEROKU_IP_TRACKER_URL;
+var url = process.env.HEROKU_IP_TRACKER_URL + '/' + process.env.MACHINE_NAME;
 
 function doPatch() {
 	client.patch(url, args, function(data, response){
