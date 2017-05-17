@@ -31,7 +31,7 @@ var jwtCheck = jwt({
 	issuer: process.env.AUTH0_ISSUER || null,
 	algorithms: ['RS256']
 });
-//app.use(jwtCheck);
+app.use(jwtCheck);
 
 
 // set up gpio pins
