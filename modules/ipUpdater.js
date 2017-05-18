@@ -11,11 +11,12 @@ var url = process.env.HEROKU_IP_TRACKER_URL + '/' + process.env.MACHINE_NAME;
 
 function doApiCall() {
 	client.put(url, args, function(data, response){
-		if (data !== true) {
-			console.log('error response', response);
+		if (data && data.name === process.env.MACHINE_NAME) {
+			console.log('update sucessful');
 		}
 		else {
-			console.log('update sucessful');
+			console.error('error updating');
+			console.error(response);
 		}
 	});
 }
